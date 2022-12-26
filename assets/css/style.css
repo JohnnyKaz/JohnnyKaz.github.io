@@ -836,6 +836,31 @@ main {
   display: inline-block;;
 }
 
+.skills-item-title {
+  color: var(--vegas-gold);
+  font-size: var(--fs-6);
+  line-height: 1.6;
+  margin-bottom: 7px;
+}
+
+.skills-text {
+  color: var(--light-gray);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.skills-text span {
+  color: var(--vegas-gold);
+  font-size: var(--fs-6);
+  line-height: 1.6;
+  display: inline-block;
+}
+
+.skills-icon {
+  display: inline-block;
+}
 
 /**
  * skills 
