@@ -158,9 +158,6 @@ html { font-family: var(--ff-poppins); }
 body { background: var(--smoky-black); }
 
 
-
-
-
 /*-----------------------------------*\
   #REUSED STYLE
 \*-----------------------------------*/
@@ -334,6 +331,7 @@ main {
 .avatar-box {
   background: var(--orange-yellow-crayola);
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .info-content .name {
