@@ -67,7 +67,7 @@
   --vegas-gold: hsl(45, 54%, 58%);
   --light-gray: hsl(0, 0%, 84%);
   --light-gray-70: hsla(0, 0%, 84%, 0.7);
-  --light-gray-35: hsla(0, 0%, 84%, 0.35);
+  --light-gray-20: hsla(0, 0%, 84%, 0.2);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
 
   /**
@@ -331,7 +331,7 @@ main {
 
 .avatar-box {
   /*background: var(--orange-yellow-crayola);*/
-  background: var(--light-gray-35);
+  background: var(--light-gray-20);
   border-radius: 20px;
   overflow: hidden;
 }
