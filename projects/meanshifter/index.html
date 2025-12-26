@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="MEANSHIFTER">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="Semantic segmentation of images is a foundational task in the field of computer vision, but classifying each pixel is an obscure and ambiguous task. In this work we introduce MeanShifter, a transformer based model for semantic image segmentation which extends the recent Segmenter model architecture. Our approach is inspired (as the name suggests) by mean shift, an older pattern recognition algorithm used for clustering, which assigns each datapoint to the local mode of the density distribution iteratively by shifting points towards the direction of the highest density. Specifically, we introduce the Mean Shift (MS) Block, which is a simple, easy to interpret and computationally efficient way to group together semantically similar data for easier classification. MeanShifter achieves competitive results for semantic segmentation on ADE20K.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="computer vision, semantic image segmentation, deep learning, encoder-decoder model, vision transformer, segmenter, self-attention, mean shift clustering">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Ioannis Kaziales">
+  <!-- <meta name="author" content="Ioannis Kaziales, Nikos Komodakis"> -->
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="University of Crete, Computer Science Department">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content='Image Segmentation algorithms based on "transformer" neural networks'>
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="Semantic segmentation of images is a foundational task in the field of computer vision, but classifying each pixel is an obscure and ambiguous task. In this work we introduce MeanShifter, a transformer based model for semantic image segmentation which extends the recent Segmenter model architecture. Our approach is inspired (as the name suggests) by mean shift, an older pattern recognition algorithm used for clustering, which assigns each datapoint to the local mode of the density distribution iteratively by shifting points towards the direction of the highest density. Specifically, we introduce the Mean Shift (MS) Block, which is a simple, easy to interpret and computationally efficient way to group together semantically similar data for easier classification. MeanShifter achieves competitive results for semantic segmentation on ADE20K.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://johnnykaz.github.io/projects/meanshifter">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content='Image Segmentation algorithms based on "transformer" neural networks - Research Preview'>
+  <meta property="article:published_time" content="2022-10-11T00:00:00.000Z">
+  <meta property="article:author" content="Ioannis Kaziales">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="computer vision">
+  <meta property="article:tag" content="semantic image segmentation">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content='Image Segmentation algorithms based on "transformer" neural networks'>
+  <meta name="citation_author" content="Kaziales, Ioannis">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#ff8c42">
+  <meta name="msapplication-TileColor" content="#ff8c42">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>MeanShifter</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/favicon.ico">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="../shared/css/bulma.min.css">
+  <link rel="stylesheet" href="../shared/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="../shared/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="../shared/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="../shared/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="../shared/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="../shared/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="../shared/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="../shared/js/fontawesome.all.min.js"></script>
+  <script defer src="../shared/js/bulma-carousel.min.js"></script>
+  <script defer src="../shared/js/bulma-slider.min.js"></script>
+  <script defer src="../shared/js/index.js"></script>
+  
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown - commented by KAZ -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <!-- TODO: Replace with your lab's related works -->
+        <a href="../spade/index.html" class="work-item" target="_blank">
+          <div class="work-info">
+            <!-- TODO: Replace with actual paper title -->
+            <h5>Open-Vocabulary Image Segmentation Algorithms with Deep Neural Networks</h5>
+            <!-- TODO: Replace with brief description -->
+            <p>zero-shot, training-free method for open-vocabulary semantic segmentation, using Diffusion generative models</p>
+            <!-- TODO: Replace with venue and year -->
+            <span class="work-venue">MSc Thesis, 2025</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- TODO: Replace with your paper title -->
+            <h1 class="title is-1 publication-title">Image Segmentation algorithms based on "transformer" neural networks</h1>
+            <!-- Original publication author block - commented for potential future publication -->
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://johnnykaz.github.io/" target="_blank">Ioannis Kaziales</a><sup>*</sup>,</span>
+                <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+                  <span class="author-block">
+                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">University of Crete, Computer Science Department<br>Conference name and year</span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                  </div> -->
+
+            <!-- MSc Thesis author block -->
+            <div class="is-size-2 publication-authors">
+              <!-- Student author -->
+              <span class="author-block">
+                <a href="https://johnnykaz.github.io/" target="_blank">Ioannis Kaziales</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <!-- Institution -->
+              <span class="author-block">University of Crete, Computer Science Department</span>
+            </div>
+
+            <div class="is-size-5 publication-authors" style="margin-top: 1rem;">
+              <!-- Thesis supervisor -->
+              <span class="author-block">
+                <strong>Thesis Supervisor:</strong>
+                <a href="https://www.csd.uoc.gr/~komod/" target="_blank">Nikos Komodakis</a>
+              </span>
+            </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+
+                    <!-- TODO: Add your supplementary material PDF or remove this section -->
+                    <span class="link-block">
+                      <a href="pdfs/thesis.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Thesis</span>
+                      <!-- <span>Supplementary</span> -->
+                    </a>
+                  </span>
+
+                  <!-- TODO: Replace with your GitHub repository URL -->
+                  <span class="link-block">
+                    <a href="https://github.com/JohnnyKaz/mmsegmentation" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+      <!-- IMAGE 1 -->
+       <div class="item">
+        <!-- Supports both single image (carousel1.jpg) or before/after (carousel1_v1.jpg + carousel1_v2.jpg) -->
+        <div class="carousel-image-container" data-image-base="carousel1">
+        </div>
+        <h2 class="subtitle has-text-centered">
+          <b>Model Overview:</b> The image is split into patches, which are projected to a sequence of embeddings and fed to a transformer encoder. The encodings pass through the <b>Mean Shift</b> layers, which try to group similar encodings together. The linear decoder predicts the segmentation mask.
+        </h2>
+      </div>
+      <!-- IMAGE 2 -->
+      <div class="item">
+        <div class="carousel-image-container" data-image-base="carousel2">
+        </div>
+        <h2 class="subtitle has-text-centered">
+          <b>MeanShifter</b> tries to group semantically similar objects together and produce better segmentation maps than Segmenter.
+        </h2>
+      </div>
+      <!-- IMAGE 3 -->
+      <div class="item">
+        <div class="carousel-image-container" data-image-base="carousel3">
+        </div>
+        <h2 class="subtitle has-text-centered">
+          <b>MeanShifter</b> tries to group semantically similar objects together and produce better segmentation maps than Segmenter.
+        </h2>
+      </div>
+      <!-- IMAGE 4 -->
+      <div class="item">
+        <div class="carousel-image-container" data-image-base="carousel4">
+        </div>
+        <h2 class="subtitle has-text-centered">
+        <b>MeanShifter</b> tries to group semantically similar objects together and produce better segmentation maps than Segmenter.
+      </h2>
+    </div>
+    <!-- IMAGE 5 -->
+    <div class="item">
+      <div class="carousel-image-container" data-image-base="carousel5">
+      </div>
+      <h2 class="subtitle has-text-centered">
+        <b>MeanShifter</b> tries to group semantically similar objects together and produce better segmentation maps than Segmenter.
+      </h2>
+    </div>
+    <!-- IMAGE 6 -->
+     <div class="item">
+      <div class="carousel-image-container" data-image-base="carousel6">
+      </div>
+      <h2 class="subtitle has-text-centered">
+        <b>MeanShifter</b> tries to group semantically similar objects together and produce better segmentation maps than Segmenter.
+      </h2>
+  </div>
+</div>      
+</div>
+</section>
+<!-- End image carousel -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+          <p>
+            Semantic segmentation of images is a foundational task in the field of computer vision, but classifying each pixel is an obscure and ambiguous task. In this work we introduce <b>MeanShifter</b>, a transformer based model for semantic image segmentation which extends the recent Segmenter model architecture. Our approach is inspired (as the name suggests) by mean shift, an older pattern recognition algorithm used for clustering, which assigns each datapoint to the local mode of the density distribution iteratively by shifting points towards the direction of the highest density. Specifically, we introduce the <b>Mean Shift (MS) Block</b>, which is a simple, easy to interpret and computationally efficient way to group together semantically similar data for easier classification. MeanShifter achieves competitive results for semantic segmentation on ADE20K.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!-- Teaser video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <! -- TODO: Replace with your teaser video -- >
+      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
+        <! -- TODO: Add your video file path here -- >
+        <source src="static/videos/banner_video.mp4" type="video/mp4">
+      </video>
+      <! -- TODO: Replace with your video description -- >
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section> -->
+<!-- End teaser video -->
+
+
+
+<!-- Youtube video -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <! -- Paper video. -- >
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video">
+            <! -- TODO: Replace with your YouTube video ID -- >
+            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End youtube video -->
+
+
+<!-- Video carousel - USEFUL TO ADD OUR MODEL ARCHITECTURE HERE -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <!-- TODO: Add poster image for better preview -- >
+          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
+            <!-- Your video file here -- >
+            <source src="static/videos/carousel1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <!-- TODO: Add poster image for better preview -- >
+          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
+            <! -- Your video file here -- >
+            <source src="static/videos/carousel2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <!-- TODO: Add poster image for better preview -- >
+          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
+            <!-- Your video file here -- >
+            <source src="static/videos/carousel3.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End video carousel -->
+
+
+
+
+
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <!-- TODO: Replace with your poster PDF -- >
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+
+
+<!--BibTex citation -->
+  <!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
+  title={Your Paper Title Here},
+  author={First Author and Second Author and Third Author},
+  journal={Conference/Journal Name},
+  year={2024},
+  url={https://your-domain.com/your-project-page}
+}</code></pre>
+    </div>
+</section> -->
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
