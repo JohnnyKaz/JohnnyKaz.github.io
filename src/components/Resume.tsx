@@ -187,7 +187,7 @@ export function Resume({ language }: ResumeProps) {
         className="flex justify-center"
       >
         <a
-          href="./documents/Kaziales_resume.pdf"
+          href="/documents/Kaziales_resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
