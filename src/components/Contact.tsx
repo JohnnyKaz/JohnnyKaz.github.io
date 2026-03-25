@@ -20,14 +20,17 @@ export function Contact({ language }: ContactProps) {
     {
       icon: Phone,
       label: t("phone"),
-      value: "+30 6984562882",
-      href: "tel:+306984562882",
+      value: "+44 7386432585",
+      href: "tel:+447386432585",
+      // value: "+30 6984562882",
+      // href: "tel:+306984562882",
     },
     {
       icon: MapPin,
       label: t("location"),
       value: t("my_location"),
-      href: "https://www.google.com/maps/place/Heraklion,+Greece",
+      href: "https://www.google.com/maps/place/Cambridge,+Cambridgeshire,+England",
+      // href: "https://www.google.com/maps/place/Heraklion,+Greece",
     },
   ];
 
@@ -100,7 +103,8 @@ export function Contact({ language }: ContactProps) {
         >
           <div className="h-full min-h-[400px] lg:min-h-[600px]">
             <iframe
-              src="https://maps.google.com/maps?hl=en&q=Heraklion&t=&z=12&ie=UTF8&iwloc=B&output=embed"
+              src="https://maps.google.com/maps?hl=en&q=Cambridge&t=&z=12&ie=UTF8&iwloc=B&output=embed"
+              // src="https://maps.google.com/maps?hl=en&q=Heraklion&t=&z=12&ie=UTF8&iwloc=B&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}

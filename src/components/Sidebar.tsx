@@ -48,7 +48,8 @@ export function Sidebar({ language }: SidebarProps) {
     {
       icon: Phone,
       label: t('phone'),
-      value: "+30 6984562882",
+      value: "+44 7386432585",
+      // value: "+30 6984562882",
     },
     {
       icon: MapPin,

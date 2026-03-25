@@ -17,8 +17,9 @@ export const translations = {
     phone: 'PHONE',
     location: 'LOCATION',
     my_name: 'Yannis Kaziales',
-    my_location: 'Heraklion, Crete, Greece',
-    last_updated: 'Updated: December 2025',
+    my_location: 'Cambridge, United Kingdom',
+    // my_location: 'Heraklion, Crete, Greece',
+    last_updated: 'Updated: March 2026',
     
     // Contact
     getInTouch: 'Get in Touch',
@@ -64,15 +65,19 @@ export const translations = {
     
     // Experience items
       // Roles
+    siriSpeechIntern: 'Siri Speech Intern',
     gradResearchAssistant: 'Graduate Research Assistant',
     undergradIntern: 'Undergraduate Research Intern',
       // Companies
+    APPLE: 'Apple',
     IACM_forth: 'Data Science Group - Institute of Applied and Computational Mathematics, FORTH',
     SPL_forth: 'Signal Processing Lab - Institute of Computer Science, FORTH',
       // Responsibilities
     responsibility0: 'Developed a neural network framework for open-vocabulary image segmentation',
     responsibility1: 'Explored foundation models in Computer Vision (SAM, CLIP, DINO, Stable Diffusion)',
+    responsibility2: 'Working on voice generation',
     
+
     // Education items
     msCS: 'MSc in Computer Science',
     bsCS: 'BSc in Computer Science',
@@ -167,8 +172,9 @@ export const translations = {
     phone: 'ΤΗΛΕΦΩΝΟ',
     location: 'ΤΟΠΟΘΕΣΙΑ',
     my_name: 'Γιάννης Καζιάλες',
-    my_location: 'Ηράκλειο, Κρήτη, Ελλάδα',
-    last_updated: 'Ενημερώθηκε: Δεκέμβριος 2025',
+    my_location: 'Κέιμπριτζ, Ηνωμένο Βασίλειο',
+    // my_location: 'Ηράκλειο, Κρήτη, Ελλάδα',
+    last_updated: 'Ενημερώθηκε: Μάρτιος 2026',
     
     // Contact
     getInTouch: 'Στοιχεία Επικοινωνίας',
@@ -214,15 +220,18 @@ export const translations = {
     
     // Experience items
       // Roles
+    siriSpeechIntern: 'Ασκούμενος στην φωνητική τεχνολογία Siri',
     researchScientist: 'Ερευνητής Επιστήμονας',
     gradResearchAssistant: 'Μεταπτυχιακός Βοηθός Ερευνητής',
     undergradIntern: 'Προπτυχιακός Ασκούμενος Ερευνητής',
       // Companies
+    APPLE: 'Apple',
     IACM_forth: 'Ομάδα Επιστήμης Δεδομένων - Ινστιτούτο Εφαρμοσμένων και Υπολογιστικών Μαθηματικών, ΙΤΕ',
     SPL_forth: 'Εργαστήριο Επεξεργασίας Σήματος - Ινστιτούτο Πληροφορικής, ΙΤΕ',
       // Responsibilities
     responsibility0: 'Ανάπτυξη ενός πλαισίου νευρωνικών δικτύων για τμηματοποίηση εικόνων με ανοικτό λεξιλόγιο',
     responsibility1: 'Εξερεύνηση foundation μοντέλων στην Υπολογιστική Όραση (SAM, CLIP, DINO, Stable Diffusion)',
+    responsibility2: 'Εργάζομαι στον τομέα της παραγωγής φωνής',
     
     // Education items
     msCS: 'Μεταπτυχιακό στην Επιστήμη Υπολογιστών',

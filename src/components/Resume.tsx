@@ -14,7 +14,15 @@ export function Resume({ language }: ResumeProps) {
   const t = (key: Parameters<typeof getTranslation>[1]) => getTranslation(language, key);
 
   const experience = [
-      {
+    {
+      title: t('siriSpeechIntern'),
+      company: t('APPLE'),
+      period: `03/2026 - ${t('present')}`,
+      responsibilities: [
+        t('responsibility2')
+      ],
+    },
+    {
       title: t('gradResearchAssistant'),
       company: t('IACM_forth'),
       //   period: `2024 - ${t('present')}`,
